@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ILoveEnglishSchool.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ILoveEnglishSchool.Data;
 using ILoveEnglishSchool.Models;
+using ILoveEnglishSchool.Controllers;
 
-namespace ILoveEnglishSchool
+namespace ILoveEnglishSchool.Controllers
 {
     public class PartController : Controller
     {
@@ -20,9 +22,9 @@ namespace ILoveEnglishSchool
         }
 
         // GET: Part
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
-            var applicationDbContext = _context.Parts.Include(p => p.Lesson);
+            var applicationDbContext = _context.Parts.Where(p => p.LessonId.Equals(id)).Include(p=>p.Lesson);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,20 +36,19 @@ namespace ILoveEnglishSchool
                 return NotFound();
             }
 
-            var part = await _context.Parts
-                .Include(p => p.Lesson)
-                .FirstOrDefaultAsync(m => m.PartId == id);
+            var part = await _context.PartModulesEnumerable.Include(p=>p.Part)
+                .Include(p => p.Part.Lesson).ToListAsync();
             if (part == null)
             {
                 return NotFound();
             }
 
-            return View(part);
+            return View(part.Where(p=>p.PartId.Equals(id)));
         }
 
         // GET: Part/Create
-        public IActionResult Create()
-        {
+        public IActionResult Create(int id) {
+            ViewData["ID"] = id;
             ViewData["LessonId"] = new SelectList(_context.Lessons, "LessonId", "LessonId");
             return View();
         }
@@ -63,7 +64,7 @@ namespace ILoveEnglishSchool
             {
                 _context.Add(part);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index),"PartModules", new {id = part.PartId});
             }
             ViewData["LessonId"] = new SelectList(_context.Lessons, "LessonId", "LessonId", part.LessonId);
             return View(part);
@@ -82,7 +83,8 @@ namespace ILoveEnglishSchool
             {
                 return NotFound();
             }
-            ViewData["LessonId"] = new SelectList(_context.Lessons, "LessonId", "LessonId", part.LessonId);
+
+            ViewData["LessonId"] =await _context.Lessons.ToListAsync();
             return View(part);
         }
 
@@ -116,9 +118,9 @@ namespace ILoveEnglishSchool
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new {id = part.LessonId});
             }
-            ViewData["LessonId"] = new SelectList(_context.Lessons, "LessonId", "LessonId", part.LessonId);
+            ViewData["LessonId"] = await _context.Lessons.ToListAsync();
             return View(part);
         }
 
@@ -149,7 +151,7 @@ namespace ILoveEnglishSchool
             var part = await _context.Parts.FindAsync(id);
             _context.Parts.Remove(part);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index),new{id=id});
         }
 
         private bool PartExists(int id)

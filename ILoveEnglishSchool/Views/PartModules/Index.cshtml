@@ -1,7 +1,7 @@
 @model IEnumerable<ILoveEnglishSchool.Models.PartModules>
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -12,29 +12,32 @@
     <title>Index</title>
 </head>
 <body>
+<h1 class="jumbotron" style="background: linear-gradient(43deg, #add681 0%, #bbedfb);color: rgb(0,0,0); height: 40px;justify-content: center; width: 100pc; margin-left: -10pc">
+    Part modules explorer
+</h1>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Part)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Header)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContentUrl)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Part)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Header)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContentUrl)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Part.PartId)
@@ -54,7 +57,7 @@
                 <a asp-action="Delete" asp-route-id="@item.ModuleId">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
 </body>

@@ -1,0 +1,53 @@
+@model ILoveEnglishSchool.Models.Lesson
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+<h1 class="jumbotron" style="background: linear-gradient(43deg, #add681 0%, #bbedfb);color: rgb(0,0,0); height: 40px;justify-content: center; width: 100pc; margin-left: -10pc">
+    Lesson editor
+</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LessonId" />
+            <div class="form-group">
+                <label asp-for="LessonNumber" class="control-label"></label>
+                <input asp-for="LessonNumber" class="form-control" />
+                <span asp-validation-for="LessonNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Topic" class="control-label"></label>
+                <input asp-for="Topic" class="form-control" />
+                <span asp-validation-for="Topic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Level" class="control-label"></label>
+                <select class="custom-select" asp-for="Level" asp-items="Html.GetEnumSelectList<Level>()"></select>
+                <span asp-validation-for="Level" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn" style="background-color: #8aacc8;" />
+                <a asp-action="Index" class="btn" style="background-color: #add681;">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

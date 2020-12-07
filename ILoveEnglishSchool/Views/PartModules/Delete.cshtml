@@ -1,7 +1,7 @@
 @model ILoveEnglishSchool.Models.PartModules
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Part.PartId)
-        </dd class>
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Header)
         </dt>

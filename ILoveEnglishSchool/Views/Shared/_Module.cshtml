@@ -1,2 +1,9 @@
-@model TModel
+@model ILoveEnglishSchool.Models.PartModules
 
+<div class="container col-auto">
+    <hr />
+    <h2 class="row" style="margin-left: 300px; font-family: 'Comic Sans MS'">@Model.Header</h2>
+    <h5 class="row text-danger">@Model.Description</h5>
+    <iframe src="@Model.ContentUrl"
+            style="border:0px;width: 800px;height: 600px;" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+</div>

@@ -16,12 +16,19 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="HomeController.cs" t="Include" />
+          <e p="LessonController.cs" t="Include" />
+          <e p="PartController.cs" t="Include" />
+          <e p="PartModulesController.cs" t="Include" />
         </e>
         <e p="Data" t="Include">
           <e p="ApplicationDbContext.cs" t="Include" />
           <e p="Migrations" t="Include">
             <e p="00000000000000_CreateIdentitySchema.cs" t="Include" />
             <e p="00000000000000_CreateIdentitySchema.Designer.cs" t="Include" />
+            <e p="20201204103513_init.cs" t="Include" />
+            <e p="20201204103513_init.Designer.cs" t="Include" />
+            <e p="20201204111303_level.cs" t="Include" />
+            <e p="20201204111303_level.Designer.cs" t="Include" />
             <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
           </e>
         </e>
@@ -29,6 +36,10 @@
         <e p="Models" t="Include">
           <e p="ErrorViewModel.cs" t="Include" />
           <e p="Lesson.cs" t="Include" />
+          <e p="LessonType.cs" t="Include" />
+          <e p="Level.cs" t="Include" />
+          <e p="Part.cs" t="Include" />
+          <e p="PartModules.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -50,9 +61,31 @@
             <e p="Index.cshtml" t="Include" />
             <e p="Privacy.cshtml" t="Include" />
           </e>
+          <e p="Lesson" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="Part" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
+          <e p="PartModules" t="Include">
+            <e p="Create.cshtml" t="Include" />
+            <e p="Delete.cshtml" t="Include" />
+            <e p="Details.cshtml" t="Include" />
+            <e p="Edit.cshtml" t="Include" />
+            <e p="Index.cshtml" t="Include" />
+          </e>
           <e p="Shared" t="Include">
             <e p="_Layout.cshtml" t="Include" />
             <e p="_LoginPartial.cshtml" t="Include" />
+            <e p="_Module.cshtml" t="Include" />
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
             <e p="Error.cshtml" t="Include" />
           </e>
@@ -118,6 +151,8 @@
               <e p="LICENSE.txt" t="Include" />
             </e>
           </e>
+          <e p="logo.png" t="Include" />
+          <e p="navbar-left.css" t="Include" />
         </e>
       </e>
       <e p="ILoveEnglishSchool.sln" t="IncludeFlat" />
@@ -125,6 +160,7 @@
     </e>
     <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
     <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
     <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.3/extResources" t="IncludeRecursive" />
     <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.3/resharper-host/local/Transient/Rider/v203/SolutionCaches/_ILoveEnglishSchool.-166105745.00" t="ExcludeRecursive" />
   </component>

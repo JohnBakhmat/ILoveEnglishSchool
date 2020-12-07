@@ -1,14 +1,12 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ILoveEnglishSchool.Data;
+using ILoveEnglishSchool.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ILoveEnglishSchool.Data;
-using ILoveEnglishSchool.Models;
 
-namespace ILoveEnglishSchool
+namespace ILoveEnglishSchool.Controllers
 {
     public class PartModulesController : Controller
     {
@@ -20,10 +18,11 @@ namespace ILoveEnglishSchool
         }
 
         // GET: PartModules
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
-            var applicationDbContext = _context.PartModulesEnumerable.Include(p => p.Part);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = await _context.PartModulesEnumerable
+                .Include(p => p.Part).ToListAsync();
+            return View( applicationDbContext.Where(pm=>pm.PartId.Equals(id)));
         }
 
         // GET: PartModules/Details/5
@@ -63,7 +62,7 @@ namespace ILoveEnglishSchool
             {
                 _context.Add(partModules);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index),new {id = partModules.PartId});
             }
             ViewData["PartId"] = new SelectList(_context.Parts, "PartId", "PartId", partModules.PartId);
             return View(partModules);

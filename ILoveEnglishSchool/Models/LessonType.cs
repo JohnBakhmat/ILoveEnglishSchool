@@ -1,4 +1,10 @@
-$HEADER$namespace $NAMESPACE$
-{
-  public enum $ENUM$ {$END$}
+namespace ILoveEnglishSchool.Models {
+    public enum LessonType {
+        Combined,
+        Grammar,
+        Listening,
+        Speaking,
+        Vocabulary,
+        Video
+    }
 }

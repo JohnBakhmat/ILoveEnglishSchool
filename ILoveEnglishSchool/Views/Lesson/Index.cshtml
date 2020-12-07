@@ -1,8 +1,104 @@
-@model TModel
+@model IEnumerable<ILoveEnglishSchool.Models.Lesson>
 
 @{
-    ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body style="justify-content: center;">
+<h1 class="jumbotron" style="background: linear-gradient(43deg, #add681 0%, #bbedfb);color: rgb(0,0,0); height: 40px;justify-content: center; width: 100pc; margin-left: -10pc">
+    Lesson explorer
+</h1>
+<p>
+    <a asp-action="Create" class="btn" style="background-color: #add681;">Create Lesson</a>
+</p>
+@using (Html.BeginForm()) {
+    <p class="container row">
+        <input type="search" class="form-control col-3 m-0 p-1" name="SearchString" placeholder="Looking for lesson?" style="font-family: Menlo,serif; margin-right: 0;">
+        <button type="submit" class="btn btn-success form-control col-auto m-0" style="width: 50px; margin-left: 0">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+            </svg></button>
+    </p>
+}
+<table class="table table-striped">
+    <thead>
+    <tr class="col-12" style="background-color: #bbdefb;">
+        <th>
+            ID
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic)
+        </th >
+        <th>
+            @Html.DisplayNameFor(model => model.Level)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody style="background-color: #eeffff;">
+    @foreach (var item in Model) {
+        <tr>
+            <td class="text-danger font-weight-bold">
+                Lesson @Html.DisplayFor(modelItem => item.LessonNumber)
+            </td>
+            <td class="text-danger font-weight-bold">
+                @{
+                    try {
+                        if (item.Topic.Contains("Food")||item.Topic.Contains("Kitchen")||item.Topic.Contains("Drinks")) {
+                            @Html.DisplayFor(modelItem => item.Topic)
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-egg-fried" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13.665 6.113a1 1 0 0 1-.667-.977L13 5a4 4 0 0 0-6.483-3.136 1 1 0 0 1-.8.2 4 4 0 0 0-3.693 6.61 1 1 0 0 1 .2 1 4 4 0 0 0 6.67 4.087 1 1 0 0 1 1.262-.152 2.5 2.5 0 0 0 3.715-2.905 1 1 0 0 1 .341-1.113 2.001 2.001 0 0 0-.547-3.478zM14 5c0 .057 0 .113-.003.17a3.001 3.001 0 0 1 .822 5.216 3.5 3.5 0 0 1-5.201 4.065 5 5 0 0 1-8.336-5.109A5 5 0 0 1 5.896 1.08 5 5 0 0 1 14 5z"/>
+                                <circle cx="8" cy="8" r="3"/>
+                            </svg>
+                        }
+                        else if (item.Topic.ToLower().Contains("Free Time".ToLower()) || item.Topic.Contains("Weather") || item.Topic.Contains("Space")) {
+                            @Html.DisplayFor(modelItem => item.Topic)
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-brightness-high" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                            </svg>
+                        }
+                        else if (item.Topic.ToLower().Contains("Book".ToLower()) ||item.Topic.ToLower().Contains("Literature".ToLower())) {
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-book-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                            </svg>
+                            @Html.DisplayFor(modelItem => item.Topic);
+                        }
+                        else {
+                            @Html.DisplayFor(modelItem => item.Topic);
+                        }
+                    }
+                    catch {
+                        <p>Error</p>
+                    }
+                    
+                    
+                }
+            </td>
+            <td class="text-success font-weight-bold">
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td class="text-success font-weight-bold">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+            <a asp-action="Index" asp-controller="Part" asp-route-id="@item.LessonId" class="btn" style="background-color: #add681;">Choose</a> |
+                <a asp-action="Edit" asp-route-id="@item.LessonId" class="btn" style="background-color: #8aacc8;">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.LessonId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+</body>
+</html>
